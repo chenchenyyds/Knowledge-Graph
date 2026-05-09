@@ -1,65 +1,74 @@
-import Image from "next/image";
+import { CATEGORIES } from "@/data";
+import { CategoryCard } from "@/components/knowledge/category-card";
+import { ArrowRight, Network } from "lucide-react";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="flex flex-col gap-16 pb-16">
+      {/* Hero */}
+      <section className="flex flex-col items-center px-2 pt-12 text-center sm:pt-24">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          Java 面试知识体系
+        </h1>
+        <p className="mt-4 max-w-2xl text-base text-[var(--color-text-secondary)] sm:text-xl">
+          5 大知识领域，25 个核心章节，从基础到实战，系统化备战 Java 面试
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href="/java-basics"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            开始学习 <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            href="/graph"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-[var(--color-border)] px-6 py-3 text-sm font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-bg-secondary)]"
+          >
+            <Network className="h-4 w-4" />
+            查看知识图谱
+          </Link>
+        </div>
+      </section>
+
+      {/* Categories Grid */}
+      <section className="mx-auto w-full max-w-5xl px-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((cat) => (
+            <CategoryCard
+              key={cat.id}
+              category={cat}
+              chapterCount={cat.chapters.length}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Learning Path */}
+      <section className="mx-auto w-full max-w-3xl px-4">
+        <h2 className="text-center text-lg font-semibold">学习路径建议</h2>
+        <div className="mt-6 space-y-0">
+          {[
+            { step: "1", label: "夯实基础", desc: "Java基础 L1-L3 → 数据库 L1-L3", color: "bg-blue-500" },
+            { step: "2", label: "进阶深入", desc: "Redis L1-L3 → Spring L1-L3", color: "bg-emerald-500" },
+            { step: "3", label: "高级拓展", desc: "系统设计 L1-L3 → 各领域 L4-L5", color: "bg-amber-500" },
+            { step: "4", label: "刷题实战", desc: "场景题 + 系统设计 L5 综合练习", color: "bg-red-500" },
+          ].map((item, i) => (
+            <div key={item.step} className="flex gap-4 pb-8 last:pb-0">
+              <div className="flex flex-col items-center">
+                <div className={`flex h-8 w-8 items-center justify-center rounded-full ${item.color} text-xs font-bold text-white`}>
+                  {item.step}
+                </div>
+                {i < 3 && <div className="mt-1 h-full w-px bg-[var(--color-border)]" />}
+              </div>
+              <div className="pt-1">
+                <h3 className="text-sm font-semibold">{item.label}</h3>
+                <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
