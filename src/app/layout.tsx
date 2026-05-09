@@ -7,8 +7,8 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Java 面试知识体系",
-  description: "系统化学习 Java 面试知识，涵盖 Java基础、数据库、Redis、Spring、系统设计",
+  title: "Java 知识图谱",
+  description: "系统化学习 Java 知识体系，涵盖 Java基础、数据库、Redis、Spring、系统设计",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

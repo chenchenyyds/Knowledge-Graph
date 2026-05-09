@@ -9,10 +9,10 @@ export default function HomePage() {
       {/* Hero */}
       <section className="flex flex-col items-center px-2 pt-12 text-center sm:pt-24">
         <h1 className="text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Java 面试知识体系
+          Java 知识图谱
         </h1>
         <p className="mt-4 max-w-2xl text-base text-[var(--color-text-secondary)] sm:text-xl">
-          5 大知识领域，25 个核心章节，从基础到实战，系统化备战 Java 面试
+          5 大知识领域，25 个核心章节，从基础到进阶，构建完整的 Java 知识体系
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
