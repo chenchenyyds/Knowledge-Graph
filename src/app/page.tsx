@@ -9,14 +9,14 @@ export default function HomePage() {
       {/* Hero */}
       <section className="flex flex-col items-center px-2 pt-12 text-center sm:pt-24">
         <h1 className="text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Java 知识图谱
+          Zane's Knowledge Graph
         </h1>
         <p className="mt-4 max-w-2xl text-base text-[var(--color-text-secondary)] sm:text-xl">
-          5 大知识领域，25 个核心章节，从基础到进阶，构建完整的 Java 知识体系
+          小陈的知识图谱 — 从 Java 起步，持续拓展知识边界
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
-            href="/java-basics"
+            href={`/${CATEGORIES[0]?.id || "java-basics"}`}
             className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
             开始学习 <ArrowRight className="h-4 w-4" />
@@ -49,10 +49,10 @@ export default function HomePage() {
         <h2 className="text-center text-lg font-semibold">学习路径建议</h2>
         <div className="mt-6 space-y-0">
           {[
-            { step: "1", label: "夯实基础", desc: "Java基础 L1-L3 → 数据库 L1-L3", color: "bg-blue-500" },
-            { step: "2", label: "进阶深入", desc: "Redis L1-L3 → Spring L1-L3", color: "bg-emerald-500" },
-            { step: "3", label: "高级拓展", desc: "系统设计 L1-L3 → 各领域 L4-L5", color: "bg-amber-500" },
-            { step: "4", label: "刷题实战", desc: "场景题 + 系统设计 L5 综合练习", color: "bg-red-500" },
+            { step: "1", label: "夯实基础", desc: "从 L1 基础开始，建立知识体系", color: "bg-blue-500" },
+            { step: "2", label: "进阶深入", desc: "L2-L3 深入学习核心原理", color: "bg-emerald-500" },
+            { step: "3", label: "高级拓展", desc: "L4-L5 掌握高级主题与实战", color: "bg-amber-500" },
+            { step: "4", label: "综合练习", desc: "跨领域串联知识点，形成知识网络", color: "bg-red-500" },
           ].map((item, i) => (
             <div key={item.step} className="flex gap-4 pb-8 last:pb-0">
               <div className="flex flex-col items-center">

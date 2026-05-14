@@ -4,6 +4,8 @@ import database from "./categories/database";
 import redis from "./categories/redis";
 import spring from "./categories/spring";
 import systemDesign from "./categories/system-design";
+import rag from "./categories/rag";
+import docker from "./categories/docker";
 
 export type { Chapter, Category } from "./types";
 export type { default as CategoryData } from "./categories/java-basics";
@@ -14,6 +16,8 @@ export const CATEGORIES: Category[] = [
   redis as Category,
   spring as Category,
   systemDesign as Category,
+  rag as Category,
+  docker as Category,
 ];
 
 export function getCategory(id: string): Category | undefined {

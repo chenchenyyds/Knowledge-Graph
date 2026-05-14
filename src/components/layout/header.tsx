@@ -28,7 +28,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link className="text-lg font-bold" href="/">
-          Java 知识体系
+          小陈的知识图谱
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">

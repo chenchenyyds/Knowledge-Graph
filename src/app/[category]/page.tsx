@@ -1,7 +1,7 @@
 import { getCategory, LEVEL_LABELS } from "@/data";
 import { ChapterCard } from "@/components/knowledge/chapter-card";
 import { notFound } from "next/navigation";
-import { Coffee, Database, Zap, Leaf, Settings, GraduationCap } from "lucide-react";
+import { Coffee, Database, Zap, Leaf, Settings, GraduationCap, Book, Globe, Code, Cpu, Shield, Server, Network, Box, Cloud, Terminal } from "lucide-react";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Coffee: Coffee as React.ComponentType<{ className?: string }>,
@@ -9,6 +9,16 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap: Zap as React.ComponentType<{ className?: string }>,
   Leaf: Leaf as React.ComponentType<{ className?: string }>,
   Settings: Settings as React.ComponentType<{ className?: string }>,
+  Book: Book as React.ComponentType<{ className?: string }>,
+  Globe: Globe as React.ComponentType<{ className?: string }>,
+  Code: Code as React.ComponentType<{ className?: string }>,
+  Cpu: Cpu as React.ComponentType<{ className?: string }>,
+  Shield: Shield as React.ComponentType<{ className?: string }>,
+  Server: Server as React.ComponentType<{ className?: string }>,
+  Network: Network as React.ComponentType<{ className?: string }>,
+  Box: Box as React.ComponentType<{ className?: string }>,
+  Cloud: Cloud as React.ComponentType<{ className?: string }>,
+  Terminal: Terminal as React.ComponentType<{ className?: string }>,
 };
 
 export default async function CategoryPage({

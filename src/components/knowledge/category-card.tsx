@@ -2,7 +2,7 @@
 
 import { type Category } from "@/data";
 import { cn } from "@/lib/utils";
-import { Coffee, Database, Zap, Leaf, Settings } from "lucide-react";
+import { Coffee, Database, Zap, Leaf, Settings, Book, Globe, Code, Cpu, Shield, Server, Network, Box, Cloud, Terminal } from "lucide-react";
 import Link from "next/link";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -11,6 +11,16 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,
   Leaf,
   Settings,
+  Book,
+  Globe,
+  Code,
+  Cpu,
+  Shield,
+  Server,
+  Network,
+  Box,
+  Cloud,
+  Terminal,
 };
 
 interface CategoryCardProps {
@@ -19,7 +29,7 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category, chapterCount }: CategoryCardProps) {
-  const Icon = ICON_MAP[category.icon] || Coffee;
+  const Icon = ICON_MAP[category.icon] || Book;
 
   return (
     <Link

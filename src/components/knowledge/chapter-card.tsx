@@ -36,7 +36,7 @@ export function ChapterCard({ chapter, category, index }: ChapterCardProps) {
             </h4>
             {chapter.interviewFrequency === "high" && (
               <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-medium text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                高频
+                核心
               </span>
             )}
           </div>

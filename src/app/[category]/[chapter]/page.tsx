@@ -19,9 +19,9 @@ function loadChapterContent(categoryId: string, chapterId: string, fallback: str
 
 function FrequencyBadge({ freq }: { freq: "high" | "medium" | "low" }) {
   const map = {
-    high: { label: "面试高频", class: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
-    medium: { label: "面试中频", class: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
-    low: { label: "面试低频", class: "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300" },
+    high: { label: "核心重点", class: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
+    medium: { label: "重要", class: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+    low: { label: "了解", class: "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300" },
   };
   const { label, class: cls } = map[freq];
   return <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", cls)}>{label}</span>;
