@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { CATEGORIES, type Category, LEVEL_LABELS } from "@/data";
 import { cn } from "@/lib/utils";
-import { BrainCircuit, ChevronRight, Circle } from "lucide-react";
+import { BookOpen, BrainCircuit, ChevronRight, Circle, ListTree } from "lucide-react";
+import { OutlinePanel } from "./outline-panel";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -12,12 +14,45 @@ export function Sidebar() {
   const categoryId = params?.category as string;
   const chapterId = params?.chapter as string;
   const currentCategory = CATEGORIES.find((c) => c.id === categoryId);
+  const [activeTab, setActiveTab] = useState<"library" | "outline">("library");
 
   return (
     <nav className="hidden w-72 shrink-0 md:block">
-      <div className="sticky top-[calc(3.5rem+2rem)] max-h-[calc(100vh-6rem)] space-y-6 overflow-y-auto pr-2">
-        {CATEGORIES.map((cat) => (
-          <div key={cat.id}>
+      <div className="sticky top-[calc(3.5rem+2rem)] max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
+        {/* Tab bar — sticky inside sidebar */}
+        <div className="sticky top-0 z-10 -mx-2 -mt-2 mb-4 bg-[var(--color-bg)] px-2 pb-1 pt-3">
+          <div className="flex gap-1 rounded-lg bg-zinc-100 p-0.5 dark:bg-zinc-800/50">
+          <button
+            onClick={() => setActiveTab("library")}
+            className={cn(
+              "flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+              activeTab === "library"
+                ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white"
+                : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+            )}
+          >
+            <BookOpen className="h-3.5 w-3.5" />
+            知识库
+          </button>
+          <button
+            onClick={() => setActiveTab("outline")}
+            className={cn(
+              "flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+              activeTab === "outline"
+                ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white"
+                : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+            )}
+          >
+            <ListTree className="h-3.5 w-3.5" />
+            大纲
+          </button>
+        </div>
+      </div>
+
+      {activeTab === "library" ? (
+          <div className="space-y-6">
+            {CATEGORIES.map((cat) => (
+              <div key={cat.id}>
             <Link
               href={`/${cat.id}`}
               className={cn(
@@ -92,6 +127,10 @@ export function Sidebar() {
           <ChevronRight className="ml-auto h-3.5 w-3.5 opacity-50" />
         </Link>
       </div>
+      ) : (
+        <OutlinePanel />
+      )}
+    </div>
     </nav>
   );
 }

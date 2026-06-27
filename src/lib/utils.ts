@@ -2,6 +2,45 @@ export function cn(...inputs: (string | undefined | null | false)[]) {
   return inputs.filter(Boolean).join(" ");
 }
 
+export interface HeadingItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
+export function slugify(text: string): string {
+  return text
+    .trim()
+    .replace(/[\s]+/g, "-")
+    .replace(/[–—·'"‘’"“”!@#$%^&*()\[\]{},.;:?\/\\|`~（）、。，．；：？！【】《》「」『』〝〞〟，、]+/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase() || "heading";
+}
+
+export function extractHeadings(md: string): HeadingItem[] {
+  const headings: HeadingItem[] = [];
+  const lines = md.split("\n");
+  let inCodeBlock = false;
+
+  for (const line of lines) {
+    if (line.trimStart().startsWith("```")) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+    if (inCodeBlock) continue;
+
+    const m = line.match(/^(#{1,4})\s+(.+)$/);
+    if (m) {
+      const level = m[1].length;
+      const text = m[2].trim();
+      headings.push({ id: slugify(text), text, level });
+    }
+  }
+
+  return headings;
+}
+
 export function getCategoryColor(color: string): string {
   const map: Record<string, string> = {
     "#3B82F6": "blue",
@@ -67,10 +106,10 @@ export function markdownToHtml(md: string): string {
   });
 
   // Headings
-  html = html.replace(/^#### (.+)$/gm, "<h4>$1</h4>");
-  html = html.replace(/^### (.+)$/gm, "<h3>$1</h3>");
-  html = html.replace(/^## (.+)$/gm, "<h2>$1</h2>");
-  html = html.replace(/^# (.+)$/gm, "<h1>$1</h1>");
+  html = html.replace(/^#### (.+)$/gm, (_, t) => `<h4 id="${slugify(t.trim())}">${t.trim()}</h4>`);
+  html = html.replace(/^### (.+)$/gm, (_, t) => `<h3 id="${slugify(t.trim())}">${t.trim()}</h3>`);
+  html = html.replace(/^## (.+)$/gm, (_, t) => `<h2 id="${slugify(t.trim())}">${t.trim()}</h2>`);
+  html = html.replace(/^# (.+)$/gm, (_, t) => `<h1 id="${slugify(t.trim())}">${t.trim()}</h1>`);
 
   // Bold
   html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");

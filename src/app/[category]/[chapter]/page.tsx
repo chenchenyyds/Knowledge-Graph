@@ -1,5 +1,6 @@
 import { getCategory, getChapter, getRelatedChapters, LEVEL_LABELS, type Category, type Chapter } from "@/data";
-import { markdownToHtml, cn } from "@/lib/utils";
+import { markdownToHtml, extractHeadings, cn } from "@/lib/utils";
+import { HeadingExtractor } from "@/components/layout/heading-extractor";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
@@ -48,10 +49,13 @@ export default async function ChapterPage({
   const { prev, next } = getNavChapters(category, chapter);
   const related = getRelatedChapters(chapter);
   const markdown = loadChapterContent(categoryId, chapterId, chapter.content);
+  const headings = extractHeadings(markdown);
   const htmlContent = markdownToHtml(markdown);
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 py-4">
+    <>
+      <HeadingExtractor headings={headings} />
+      <div className="mx-auto max-w-3xl space-y-6 py-4">
       {/* Header */}
       <header className="space-y-2">
         <div className="flex flex-wrap items-center gap-3">
@@ -158,5 +162,6 @@ export default async function ChapterPage({
         </div>
       </nav>
     </div>
+    </>
   );
 }

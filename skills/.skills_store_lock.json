@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "skill-creator": {
+      "name": "Skill Creator",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=skill-creator",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "find-skills": {
+      "name": "Find Skills",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=find-skills",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "gstack": {
+      "name": "Gstack",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=gstack",
+      "source": "skillhub",
+      "version": "1.0.0"
+    }
+  }
+}
