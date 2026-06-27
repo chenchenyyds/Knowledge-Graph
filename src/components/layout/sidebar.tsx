@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { CATEGORIES, type Category, LEVEL_LABELS } from "@/data";
 import { cn } from "@/lib/utils";
-import { ChevronRight, Circle } from "lucide-react";
+import { BrainCircuit, ChevronRight, Circle } from "lucide-react";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -32,6 +32,19 @@ export function Sidebar() {
               <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 {cat.title}
               </span>
+            </Link>
+            {/* Mind map link */}
+            <Link
+              href={`/${cat.id}/mind-map`}
+              className={cn(
+                "flex items-center gap-2 rounded-md px-2.5 py-1.5 text-xs transition-colors mb-1",
+                pathname === `/${cat.id}/mind-map`
+                  ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-white"
+                  : "text-zinc-400 hover:bg-zinc-50 hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-800/50 dark:hover:text-zinc-300"
+              )}
+            >
+              <BrainCircuit className="h-3 w-3 shrink-0" />
+              思维导图
             </Link>
             <ul className="space-y-0.5">
               {cat.chapters.map((ch) => {
